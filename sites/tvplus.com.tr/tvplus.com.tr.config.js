@@ -1,102 +1,111 @@
-const cheerio = require('cheerio')
 const axios = require('axios')
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
 const customParseFormat = require('dayjs/plugin/customParseFormat')
-const debug = require('debug')('site:tvplus.com.tr')
 
 dayjs.extend(utc)
 dayjs.extend(customParseFormat)
 
-const baseUrl = 'https://tvplus.com.tr/canli-tv/yayin-akisi'
-
 module.exports = {
   site: 'tvplus.com.tr',
   days: 2,
+  // Use the specific API endpoint you observed
+  url: 'https://gbzottvsc27.tvplus.com.tr:33207/EPG/JSON/PlayBillList',
+  
   request: {
-    cache: {
-      ttl: 24 * 60 * 60 * 1000 // 1 day
-    }
-  },
-  async url({ channel }) {
-    if (module.exports.buildId === undefined) {
-      module.exports.buildId = await module.exports.fetchBuildId()
-      debug('Got build id', module.exports.buildId)
-    }
-    const channelId = channel.site_id.replace('/', '--')
-    return `https://tvplus.com.tr/_next/data/${module.exports.buildId}/${channel.lang}/canli-tv/yayin-akisi/${channelId}.json?title=${channelId}`
-  },
-  parser({ content, date }) {
-    const programs = []
-    if (content) {
-      const data = JSON.parse(content)
-      if (Array.isArray(data?.pageProps?.allPlaybillList)) {
-        data.pageProps.allPlaybillList
-          .filter(i => i.length && i[0].starttime.startsWith(date.format('YYYY-MM-DD')))
-          .forEach(i => {
-            for (const schedule of i) {
-              const [, season, episode] = schedule.seasonInfo?.match(
-                /(\d+)\. Sezon - (\d+)\. Bölüm/
-              ) || [null, null, null]
-              programs.push({
-                title: schedule.name,
-                description: schedule.introduce,
-                category: schedule.genres,
-                image: schedule.picture,
-                season: season ? parseInt(season) : null,
-                episode: episode ? parseInt(episode) : null,
-                start: dayjs.utc(schedule.starttime),
-                stop: dayjs.utc(schedule.endtime)
-              })
-            }
-          })
+    method: 'POST',
+    async headers() {
+      // Step 1: Fresh Authentication for every run to get a valid session
+      const auth = await axios.post('https://gbzottvsc27.tvplus.com.tr:33207/EPG/JSON/Authenticate', {
+        terminaltype: 'webtv',
+        terminalvendor: 'chrome',
+        osversion: 'Windows',
+        userType: '3',
+        utcEnable: '1',
+        timezone: 'UTC'
+      }).catch(() => null)
+
+      const cookies = auth && auth.headers['set-cookie'] 
+        ? auth.headers['set-cookie'].join('; ') 
+        : ''
+
+      return {
+        'Content-Type': 'application/json',
+        'Cookie': cookies,
+        'Origin': 'https://tvplus.com.tr',
+        'Referer': 'https://tvplus.com.tr/'
+      }
+    },
+    data({ date, channel }) {
+      // Step 2: Clean the ID. The POST API only accepts the numeric ID (e.g. 130)
+      const numericId = channel.site_id.split(/--|\//).pop()
+
+      // Step 3: Precisely match the payload format you saw in logs
+      return {
+        type: '2',
+        channelid: numericId,
+        // The API expects UTC-based timestamps for the window
+        starttime: date.startOf('day').format('YYYYMMDDHHmmss'),
+        endtime: date.endOf('day').format('YYYYMMDDHHmmss'),
+        isFillProgram: 1
       }
     }
-
-    return programs
   },
-  async channels() {
-    if (module.exports.buildId === undefined) {
-      module.exports.buildId = await module.exports.fetchBuildId()
-      debug('Got build id', module.exports.buildId)
+
+  parser: function ({ content }) {
+    const programs = []
+    if (!content) return programs
+
+    let data
+    try {
+      data = typeof content === 'string' ? JSON.parse(content) : content
+    } catch (e) {
+      return programs
     }
-    const channels = []
-    const data = await axios
-      .get(`https://tvplus.com.tr/_next/data/${module.exports.buildId}/canli-tv/yayin-akisi.json`)
-      .then(r => r.data)
-      .catch(console.error)
 
-    const channels_json = data.pageProps.channelListSsr
+    const items = data.playbilllist || []
 
-    channels_json.forEach(channel => {
-      channels.push({
-        lang: 'tr',
-        name: channel.name,
-        site_id: channel.name.normalize('NFD')  // Decompose accented characters
-        .replace(/[\u0300-\u036f]/g, '')        // Remove accent marks
-        .toLowerCase()
-        .replace(/\s+/g, '-')                   // Replace spaces with hyphens
-        .replace(/[^a-zA-Z0-9-]/g, '')          // Remove special chars but keep hyphens
-        .replace(/^-+|-+$/g, '')                // Remove leading/trailing hyphens
-        + '/' + channel.id,
-        logo: channel.channelLogo
+    items.forEach(item => {
+      // API returns time in 'YYYYMMDDHHmmss' format
+      programs.push({
+        title: item.name,
+        category: item.genres ? [item.genres] : [],
+        description: item.introduce,
+        icon: item.picurl || (item.pictures && item.pictures[0]?.href) || null,
+        start: dayjs.utc(item.starttime, 'YYYYMMDDHHmmss').toJSON(),
+        stop: dayjs.utc(item.endtime, 'YYYYMMDDHHmmss').toJSON()
       })
     })
 
-    return channels
+    return programs
   },
-  async fetchBuildId() {
-    const data = await axios
-      .get(baseUrl)
-      .then(r => r.data)
-      .catch(console.error)
 
-    if (data) {
-      const $ = cheerio.load(data)
-      const nextData = JSON.parse($('#__NEXT_DATA__').text())
-      return nextData?.buildId || null
-    } else {
-      return null
-    }
+  async channels() {
+    const cheerio = require('cheerio')
+    const channels = []
+    
+    // Scrape the main page to find channel names and their numeric IDs
+    const response = await axios.get(`https://tvplus.com.tr/canli-tv/yayin-akisi`).catch(() => null)
+    if (!response) return []
+
+    const $ = cheerio.load(response.data)
+    $('.channelListItem').each((i, el) => {
+      const name = $(el).find('.channelName').text().trim()
+      const url = $(el).find('.channelLink').attr('href')
+      
+      if (url) {
+        // Extracts the number after '--' (e.g., show-tv-hd--130 -> 130)
+        const match = url.match(/--(\d+)$/)
+        if (match) {
+          channels.push({
+            lang: 'tr',
+            name,
+            site_id: match[1]
+          })
+        }
+      }
+    })
+
+    return channels
   }
 }
