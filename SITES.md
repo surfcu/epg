@@ -43,6 +43,7 @@
     <tr><td><a href="sites/dishtv.in">dishtv.in</a></td><td align="right">434</td><td align="right">326</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/dna.fi">dna.fi</a></td><td align="right">123</td><td align="right">0</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/dsmart.com.tr">dsmart.com.tr</a></td><td align="right">100</td><td align="right">76</td><td align="center">🟢</td><td></td></tr>
+    <tr><td><a href="sites/dsmartgo.com.tr">dsmartgo.com.tr</a></td><td align="right">114</td><td align="right">87</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/dstv.com">dstv.com</a></td><td align="right">2979</td><td align="right">80</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/dtv8.net">dtv8.net</a></td><td align="right">1</td><td align="right">1</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/elcinema.com">elcinema.com</a></td><td align="right">198</td><td align="right">196</td><td align="center">🟢</td><td></td></tr>
