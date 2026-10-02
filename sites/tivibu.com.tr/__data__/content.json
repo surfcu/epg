@@ -1,0 +1,122 @@
+{
+  "channelListViewModel": [
+    {
+      "channelCode": "ch00000000000000001258",
+      "channelName": "SİNEMA TV",
+      "channelImage": "https://itv224234.tmp.tivibu.com.tr:6430/images/poster/20250801839042.png",
+      "totalCount": 159
+    },
+    {
+      "channelCode": "ch00000000000000002187",
+      "channelName": "TARİH TV",
+      "channelImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/poster/20250801839171.png",
+      "totalCount": 159
+    }
+  ],
+  "prevueListViewModel": [
+    {
+      "prevueName": "Tehlikeli Hayvanlar",
+      "genre": "Film",
+      "ratingId": "generalAudience",
+      "beginTime": null,
+      "endTime": null,
+      "prevueImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/prevueposter/20261001304479.jpg",
+      "channelCode": "ch00000000000000001258",
+      "description": null,
+      "releaseYear": null,
+      "exactBeginTime": "23:45",
+      "exactEndTime": "01:45"
+    },
+    {
+      "prevueName": "Gece Gelen",
+      "genre": "Film",
+      "ratingId": "generalAudience",
+      "beginTime": null,
+      "endTime": null,
+      "prevueImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/prevueposter/20260312640884.jpg",
+      "channelCode": "ch00000000000000001258",
+      "description": null,
+      "releaseYear": null,
+      "exactBeginTime": "01:45",
+      "exactEndTime": "03:30"
+    },
+    {
+      "prevueName": "Sessizliğin Sesi",
+      "genre": "Film",
+      "ratingId": "generalAudience",
+      "beginTime": null,
+      "endTime": null,
+      "prevueImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/prevueposter/20260413116094.jpg",
+      "channelCode": "ch00000000000000001258",
+      "description": null,
+      "releaseYear": null,
+      "exactBeginTime": "03:30",
+      "exactEndTime": "05:15"
+    },
+    {
+      "prevueName": "Belgelerle Tarih",
+      "genre": "Yaşam",
+      "ratingId": "generalAudience",
+      "beginTime": null,
+      "endTime": null,
+      "prevueImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/prevueposter/20260929097177.jpg",
+      "channelCode": "ch00000000000000002187",
+      "description": null,
+      "releaseYear": null,
+      "exactBeginTime": "00:00",
+      "exactEndTime": "00:35"
+    },
+    {
+      "prevueName": "İster İnan İster İnanma",
+      "genre": "Yaşam",
+      "ratingId": "generalAudience",
+      "beginTime": null,
+      "endTime": null,
+      "prevueImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/prevueposter/20260808128755.jpg",
+      "channelCode": "ch00000000000000002187",
+      "description": null,
+      "releaseYear": null,
+      "exactBeginTime": "00:35",
+      "exactEndTime": "00:50"
+    },
+    {
+      "prevueName": "Bozkırın Hükümdarları",
+      "genre": "Yaşam",
+      "ratingId": "generalAudience",
+      "beginTime": null,
+      "endTime": null,
+      "prevueImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/prevueposter/20260928295332.jpg",
+      "channelCode": "ch00000000000000002187",
+      "description": null,
+      "releaseYear": null,
+      "exactBeginTime": "00:50",
+      "exactEndTime": "01:55"
+    },
+    {
+      "prevueName": "2. Dünya Savaşı'nın Dönüm Noktaları",
+      "genre": "Yaşam",
+      "ratingId": "generalAudience",
+      "beginTime": null,
+      "endTime": null,
+      "prevueImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/prevueposter/20260430131410.jpg",
+      "channelCode": "ch00000000000000002187",
+      "description": null,
+      "releaseYear": null,
+      "exactBeginTime": "22:00",
+      "exactEndTime": "23:00"
+    },
+    {
+      "prevueName": "Türk Tarihinin İzinde",
+      "genre": "Yaşam",
+      "ratingId": "generalAudience",
+      "beginTime": null,
+      "endTime": null,
+      "prevueImage": "https://itv224226.tmp.tivibu.com.tr:6430/images/prevueposter/20260130032800.jpg",
+      "channelCode": "ch00000000000000002187",
+      "description": null,
+      "releaseYear": null,
+      "exactBeginTime": "23:00",
+      "exactEndTime": "00:30"
+    }
+  ]
+}
