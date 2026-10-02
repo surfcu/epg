@@ -37,6 +37,45 @@ function isStale(headers, date) {
   return modified.isBefore(day.subtract(4, 'd')) || modified.isAfter(day.add(2, 'd'))
 }
 
+// Description and image are only on the per-programme details page.
+const DETAIL_CONCURRENCY = 5
+
+async function fetchDetails({ date, channelId, programId }) {
+  const d = dayjs.utc(date)
+  const url = `https://www.turksatkablo.com.tr/yayin-akisi-program-detay.aspx?d=${d.date()}&m=${
+    d.month() + 1
+  }&y=${d.year()}&kID=${channelId}&eID=${programId}`
+  try {
+    const { data } = await axios.get(url, { timeout: 15000, responseType: 'text' })
+    const cheerio = require('cheerio')
+    const $ = cheerio.load(String(data))
+    const box = $('.program-detail')
+    const src = box.find('img').attr('src') || null
+    const description = box.find('p').text().trim() || null
+    return {
+      // the page links images over http; the CDN also serves https
+      image: src ? src.replace(/^http:\/\//, 'https://') : null,
+      description
+    }
+  } catch {
+    return {}
+  }
+}
+
+// run fn over items, at most `limit` at a time
+async function mapLimit(items, limit, fn) {
+  const results = new Array(items.length)
+  let next = 0
+  const worker = async () => {
+    while (next < items.length) {
+      const i = next++
+      results[i] = await fn(items[i], i)
+    }
+  }
+  await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker))
+  return results
+}
+
 module.exports = {
   site: 'turksatkablo.com.tr',
   days: 2,
@@ -49,7 +88,7 @@ module.exports = {
       ttl: 60 * 60 * 1000 // 1 hour; one file serves every channel
     }
   },
-  parser({ content, headers, channel, date }) {
+  async parser({ content, headers, channel, date }) {
     if (isStale(headers, date)) return []
     const data = parseJson(content)
     if (!data || !Array.isArray(data.k)) return []
@@ -58,7 +97,7 @@ module.exports = {
     if (!entry || !Array.isArray(entry.p)) return []
 
     const day = dayjs.utc(date).format('YYYY-MM-DD')
-    const programs = []
+    const items = []
     let prevStart = null
 
     entry.p.forEach(item => {
@@ -72,10 +111,20 @@ module.exports = {
       if (!stop.isAfter(start)) stop = stop.add(1, 'd')
       prevStart = start
 
-      programs.push({ title: item.b.trim(), start, stop })
+      items.push({ id: String(item.a), title: item.b.trim(), start, stop })
     })
 
-    return programs
+    return mapLimit(items, DETAIL_CONCURRENCY, async ({ id, title, start, stop }) => {
+      const details = await fetchDetails({ date, channelId: entry.i, programId: id })
+      return {
+        title,
+        description: details.description || null,
+        image: details.image || null,
+        icon: details.image || null, // <icon> for Tvheadend and older XMLTV readers
+        start,
+        stop
+      }
+    })
   },
   async channels() {
     const day = dayjs().tz(TZ).date()
