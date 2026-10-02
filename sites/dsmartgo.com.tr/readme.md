@@ -5,7 +5,7 @@ https://www.dsmartgo.com.tr/tr/tv-izle
 ### Download the guide
 
 ```sh
-npm run grab --- --site=dsmartgo.com.tr
+npm run grab --- --sites=dsmartgo.com.tr
 ```
 
 ### Update channel list
