@@ -1,35 +1,54 @@
-const { parser, url } = require('./tvplus.com.tr.config.js')
+const { parser, url, request } = require('./tvplus.com.tr.config.js')
 const fs = require('fs')
 const path = require('path')
 const axios = require('axios')
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
-const customParseFormat = require('dayjs/plugin/customParseFormat')
 
-dayjs.extend(customParseFormat)
 dayjs.extend(utc)
 
 jest.mock('axios')
 
-const date = dayjs.utc('2024-12-15', 'YYYY-MM-DD').startOf('d')
-const channel = {
-  lang: 'tr',
-  site_id: 'nick-jr/4353',
-  xmltv_id: 'NickJr.tr'
-}
+const date = dayjs.utc('2026-10-03', 'YYYY-MM-DD').startOf('d')
+const channel = { lang: 'tr', site_id: 'fx-hd/131', xmltv_id: 'FX.tr' }
 
-axios.get.mockImplementation(url => {
-  if (url === 'https://tvplus.com.tr/canli-tv/yayin-akisi') {
+axios.post.mockImplementation(url => {
+  if (url === 'https://tvplus.com.tr/get-platform-info') {
+    return Promise.resolve({ data: { https: 'https://gbzottvsc17.tvplus.com.tr:33207/', status: 'ok' } })
+  }
+  if (url === 'https://gbzottvsc17.tvplus.com.tr:33207/EPG/JSON/Authenticate') {
     return Promise.resolve({
-      data: fs.readFileSync(path.join(__dirname, '__data__', 'build.html')).toString()
+      headers: { 'set-cookie': ['JSESSIONID=abc123; Path=/; Secure; HttpOnly'] },
+      data: { retcode: '0', retmsg: 'success' }
     })
   }
+  return Promise.reject(new Error(`unexpected POST ${url}`))
 })
 
 it('can generate valid url', async () => {
-  expect(await url({ channel })).toBe(
-    'https://tvplus.com.tr/_next/data/kUzvz_bbQJNaShlFUkrR3/tr/canli-tv/yayin-akisi/nick-jr--4353.json?title=nick-jr--4353'
+  expect(await url({ channel, date })).toBe(
+    'https://gbzottvsc17.tvplus.com.tr:33207/EPG/JSON/PlayBillList'
   )
+})
+
+it('can generate valid request headers', async () => {
+  const headers = await request.headers({ channel, date })
+  expect(headers.Cookie).toBe('JSESSIONID=abc123')
+  expect(headers['Content-Type']).toBe('application/json')
+})
+
+it('can generate valid request data', () => {
+  expect(request.data({ channel, date })).toEqual({
+    type: '2',
+    channelid: '131',
+    begintime: '20261002210000',
+    endtime: '20261003210000',
+    isFillProgram: 0
+  })
+})
+
+it('accepts a bare numeric site_id', () => {
+  expect(request.data({ channel: { site_id: '131' }, date }).channelid).toBe('131')
 })
 
 it('can parse response', () => {
@@ -40,38 +59,28 @@ it('can parse response', () => {
     return p
   })
 
-  expect(results.length).toBe(88)
+  expect(results.length).toBe(4) // gap filler dropped
   expect(results[0]).toMatchObject({
-    start: '2024-12-14T21:10:00.000Z',
-    stop: '2024-12-14T21:20:00.000Z',
-    title: 'Camgöz (2020)',
-    description:
-      "Max'in Camgöz adında yarı köpek balığı yarı köpek eşsiz bir evcil havyanı vardır. İlk başlarda Camgöz'ü saklamaya çalışsa da Sisli Pınarlar'da, en iyi arkadaşlar, meraklı komşular ve hatta Max'in ailesi bile yaramaz yeni arkadaşını fark edecektir.",
+    start: '2026-10-02T21:00:00.000Z',
+    stop: '2026-10-02T21:45:00.000Z',
+    title: 'Castle',
+    category: ['Dizi'],
+    season: 7,
+    episode: 3,
     image:
-      'https://gbzeottvsc01.tvplus.com.tr:33207/CPS/images/universal/film/program/202412/20241209/21/2126356250845eb88428_0_XL.jpg',
-    category: 'Çocuk',
-    season: 1,
-    episode: 116
+      'https://gbzottvsc17.tvplus.com.tr:33207/CPS/images/universal/film/program/202609/20260927/9/2204280626275eb88428_0_XL.jpg'
   })
-  expect(results[10]).toMatchObject({
-    start: '2024-12-14T23:00:00.000Z',
-    stop: '2024-12-14T23:25:00.000Z',
-    title: 'Blaze ve Yol Canavarları',
-    description:
-      'Blaze ve Yol Canavarları, dünyanın en büyük canavar kamyonu Blaze ve en iyi arkadaşı ve sürücüsü AJ adında bir çocuk hakkındaki interaktif bir anaokulu animasyon dizisidir.',
-    image:
-      'https://gbzeottvsc01.tvplus.com.tr:33207/CPS/images/universal/film/program/202412/20241209/94/2126356271145eb88428_0_XL.jpg',
-    category: 'Çocuk',
-    season: 6,
-    episode: 617
+  expect(results[0].description).toMatch(/^Başarılı cinayet-gizem/)
+  expect(results[3]).toMatchObject({
+    start: '2026-10-02T23:15:00.000Z',
+    stop: '2026-10-03T00:00:00.000Z',
+    title: 'High Potential',
+    season: 2,
+    episode: 3
   })
 })
 
 it('can handle empty guide', () => {
-  const result = parser({
-    date,
-    channel,
-    content: ''
-  })
-  expect(result).toMatchObject([])
+  expect(parser({ date, channel, content: '' })).toMatchObject([])
+  expect(parser({ date, channel, content: '{"retcode":"-2"}' })).toMatchObject([])
 })

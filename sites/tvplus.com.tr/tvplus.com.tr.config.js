@@ -1,111 +1,141 @@
 const axios = require('axios')
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
-const customParseFormat = require('dayjs/plugin/customParseFormat')
+const timezone = require('dayjs/plugin/timezone')
 
 dayjs.extend(utc)
-dayjs.extend(customParseFormat)
+dayjs.extend(timezone)
+
+const TZ = 'Europe/Istanbul'
+const SITE = 'https://tvplus.com.tr'
+const FALLBACK_HOST = 'https://gbzottvsc17.tvplus.com.tr:33207'
+
+// The EPG host is assigned per session by the site; nodes rotate (sc01, sc13, sc17, ...).
+let hostPromise
+function getHost() {
+  if (!hostPromise) {
+    hostPromise = axios
+      .post(`${SITE}/get-platform-info`, { platform: 'production' })
+      .then(r => String(r.data?.https || FALLBACK_HOST).replace(/\/+$/, ''))
+      .catch(() => FALLBACK_HOST)
+  }
+  return hostPromise
+}
+
+// One anonymous (guest) session for the whole run instead of one login per request.
+let sessionPromise
+function getSession() {
+  if (!sessionPromise) {
+    sessionPromise = (async () => {
+      const host = await getHost()
+      const res = await axios.post(`${host}/EPG/JSON/Authenticate`, {
+        terminaltype: 'webtv', // must be lowercase; "WEBTV" fails with "deviceModel does not exist"
+        terminalvendor:
+          '5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36',
+        osversion: 'Win32',
+        userType: '3',
+        utcEnable: '1',
+        timezone: TZ
+      })
+      if (res.data?.retcode !== '0') {
+        throw new Error(`tvplus.com.tr: guest auth failed (${res.data?.retcode} ${res.data?.retmsg})`)
+      }
+      const cookies = (res.headers['set-cookie'] || []).map(c => c.split(';')[0])
+      if (!cookies.some(c => c.startsWith('JSESSIONID=')) && res.data.jSessionID) {
+        cookies.push(`JSESSIONID=${res.data.jSessionID}`)
+      }
+      return cookies.join('; ')
+    })().catch(err => {
+      sessionPromise = undefined // allow a retry on the next request
+      throw err
+    })
+  }
+  return sessionPromise
+}
+
+// API returns e.g. "2026-10-03 00:45:00 UTC+03:00"
+function parseTime(str) {
+  if (!str) return null
+  const m = str.match(/^(\d{4}-\d{2}-\d{2}) (\d{2}:\d{2}:\d{2}) UTC([+-]\d{2}:\d{2})$/)
+  return m ? dayjs(`${m[1]}T${m[2]}${m[3]}`) : dayjs.tz(str, TZ)
+}
+
+function toInt(v) {
+  const n = parseInt(v, 10)
+  return n > 0 ? n : null
+}
+
+function pickImage(item) {
+  const list = (item.picture?.ad || item.picture?.still || '').split(',').filter(Boolean)
+  return list.find(u => u.includes('_0_XL.')) || list[0] || null
+}
 
 module.exports = {
   site: 'tvplus.com.tr',
   days: 2,
-  // Use the specific API endpoint you observed
-  url: 'https://gbzottvsc27.tvplus.com.tr:33207/EPG/JSON/PlayBillList',
-  
+  url: async () => `${await getHost()}/EPG/JSON/PlayBillList`,
   request: {
     method: 'POST',
     async headers() {
-      // Step 1: Fresh Authentication for every run to get a valid session
-      const auth = await axios.post('https://gbzottvsc27.tvplus.com.tr:33207/EPG/JSON/Authenticate', {
-        terminaltype: 'webtv',
-        terminalvendor: 'chrome',
-        osversion: 'Windows',
-        userType: '3',
-        utcEnable: '1',
-        timezone: 'UTC'
-      }).catch(() => null)
-
-      const cookies = auth && auth.headers['set-cookie'] 
-        ? auth.headers['set-cookie'].join('; ') 
-        : ''
-
       return {
         'Content-Type': 'application/json',
-        'Cookie': cookies,
-        'Origin': 'https://tvplus.com.tr',
-        'Referer': 'https://tvplus.com.tr/'
+        Cookie: await getSession(),
+        Origin: SITE,
+        Referer: `${SITE}/`
       }
     },
     data({ date, channel }) {
-      // Step 2: Clean the ID. The POST API only accepts the numeric ID (e.g. 130)
-      const numericId = channel.site_id.split(/--|\//).pop()
-
-      // Step 3: Precisely match the payload format you saw in logs
+      // site_id is "slug/id" (or a bare id); the API wants the numeric id.
+      const channelid = String(channel.site_id).split(/--|\//).pop()
+      // begintime/endtime are read as UTC; ask for the Istanbul calendar day.
+      const start = dayjs.tz(dayjs.utc(date).format('YYYY-MM-DD'), TZ).utc()
       return {
         type: '2',
-        channelid: numericId,
-        // The API expects UTC-based timestamps for the window
-        starttime: date.startOf('day').format('YYYYMMDDHHmmss'),
-        endtime: date.endOf('day').format('YYYYMMDDHHmmss'),
-        isFillProgram: 1
+        channelid,
+        // NOT "starttime": that key is ignored and the API returns everything from "now"
+        begintime: start.format('YYYYMMDDHHmmss'),
+        endtime: start.add(1, 'd').format('YYYYMMDDHHmmss'),
+        isFillProgram: 0
       }
     }
   },
-
-  parser: function ({ content }) {
-    const programs = []
-    if (!content) return programs
-
+  parser({ content }) {
     let data
     try {
-      data = typeof content === 'string' ? JSON.parse(content) : content
-    } catch (e) {
-      return programs
+      data = typeof content === 'string' || Buffer.isBuffer(content) ? JSON.parse(content) : content
+    } catch {
+      return []
     }
+    if (!data || !Array.isArray(data.playbilllist)) return []
 
-    const items = data.playbilllist || []
-
-    items.forEach(item => {
-      // API returns time in 'YYYYMMDDHHmmss' format
-      programs.push({
+    return data.playbilllist
+      .filter(item => item.name && item.gapFiller !== '1')
+      .map(item => ({
         title: item.name,
-        category: item.genres ? [item.genres] : [],
-        description: item.introduce,
-        icon: item.picurl || (item.pictures && item.pictures[0]?.href) || null,
-        start: dayjs.utc(item.starttime, 'YYYYMMDDHHmmss').toJSON(),
-        stop: dayjs.utc(item.endtime, 'YYYYMMDDHHmmss').toJSON()
-      })
-    })
-
-    return programs
+        description: item.introduce || null,
+        category: item.genres ? item.genres.split(',').map(g => g.trim()).filter(Boolean) : [],
+        image: pickImage(item),
+        season: toInt(item.seasonNum),
+        episode: toInt(item.subNum),
+        start: parseTime(item.starttime),
+        stop: parseTime(item.endtime)
+      }))
   },
-
   async channels() {
     const cheerio = require('cheerio')
+    const { data } = await axios.get(`${SITE}/canli-tv/yayin-akisi`)
+    const $ = cheerio.load(data)
+    const seen = new Set()
     const channels = []
-    
-    // Scrape the main page to find channel names and their numeric IDs
-    const response = await axios.get(`https://tvplus.com.tr/canli-tv/yayin-akisi`).catch(() => null)
-    if (!response) return []
-
-    const $ = cheerio.load(response.data)
-    $('.channelListItem').each((i, el) => {
-      const name = $(el).find('.channelName').text().trim()
-      const url = $(el).find('.channelLink').attr('href')
-      
-      if (url) {
-        // Extracts the number after '--' (e.g., show-tv-hd--130 -> 130)
-        const match = url.match(/--(\d+)$/)
-        if (match) {
-          channels.push({
-            lang: 'tr',
-            name,
-            site_id: match[1]
-          })
-        }
-      }
+    $('a[href*="/canli-tv/yayin-akisi/"]').each((_, el) => {
+      const m = ($(el).attr('href') || '').match(/\/canli-tv\/yayin-akisi\/([a-z0-9-]+)--(\d+)$/)
+      if (!m || seen.has(m[2])) return
+      seen.add(m[2])
+      const name =
+        $(el).text().trim() || ($(el).attr('title') || '').replace(/\s*Yayın Akışı$/, '').trim()
+      // same "slug/id" shape as tvplus.com.tr.channels.xml
+      channels.push({ lang: 'tr', name, site_id: `${m[1]}/${m[2]}` })
     })
-
     return channels
   }
 }
