@@ -88,7 +88,7 @@ export async function loadIssues(props?: { labels: string[] | string }) {
   if (props && props.labels) {
     labels = Array.isArray(props.labels) ? props.labels.join(',') : props.labels
   }
-  let issues: object[] = []
+  let issues: object[]
   if (TESTING) {
     issues = (await import('../../tests/__data__/input/sites_update/issues.mjs')).default
   } else {
@@ -109,4 +109,28 @@ export async function loadIssues(props?: { labels: string[] | string }) {
 
 export function parseNumber(value: string): number {
   return parseInt(value)
+}
+
+export function parseList(value: string): string[] {
+  return value.split(',')
+}
+
+export function parseBoolean(value: string | boolean | undefined): boolean {
+  if (value === undefined) return true
+  if (typeof value === 'boolean') return value
+  if (typeof value === 'string' && value.toLowerCase() === 'true') return true
+
+  return false
+}
+
+export function parseBooleanOrString(value: string | boolean): string | boolean {
+  if (value === undefined) return true
+  if (typeof value === 'boolean') return value
+  if (typeof value === 'string') {
+    const normalized = value.toLowerCase()
+    if (normalized === 'true') return true
+    if (normalized === 'false') return false
+  }
+
+  return value
 }

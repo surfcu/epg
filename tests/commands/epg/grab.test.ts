@@ -13,7 +13,7 @@ beforeEach(() => {
 
 describe('epg:grab', () => {
   it('can grab epg by site name', () => {
-    const cmd = `${ENV_VAR} npm run grab --- --site=example.com --output="${path.resolve(
+    const cmd = `${ENV_VAR} npm run grab --- --sites=example.com --output="${path.resolve(
       'tests/__data__/output/guides/base.guide.xml'
     )}"`
     const stdout = execSync(cmd, { encoding: 'utf8' })
@@ -25,7 +25,7 @@ describe('epg:grab', () => {
   })
 
   it('can grab epg with curl option', () => {
-    const cmd = `${ENV_VAR} npm run grab --- --site=example.com --curl --output="${path.resolve(
+    const cmd = `${ENV_VAR} npm run grab --- --sites=example.com --curl --output="${path.resolve(
       'tests/__data__/output/guides/curl.guide.xml'
     )}"`
     const stdout = execSync(cmd, { encoding: 'utf8' })
@@ -90,28 +90,113 @@ describe('epg:grab', () => {
 
   it('can grab epg with gzip option enabled', () => {
     const cmd = `${ENV_VAR} npm run grab --- --channels=tests/__data__/input/epg_grab/sites/example2.com/example2.com.channels.xml --output="${path.resolve(
-      'tests/__data__/output/guides/gzip.guide.xml'
-    )}" --gzip `
+      'tests/__data__/output/guides/guide.xml'
+    )}" --gzip`
     const stdout = execSync(cmd, { encoding: 'utf8' })
     if (process.env.DEBUG === 'true') console.log(cmd, stdout)
 
-    expect(content('tests/__data__/output/guides/gzip.guide.xml')).toEqual(
-      content('tests/__data__/expected/epg_grab/gzip.guide.xml')
+    expect(content('tests/__data__/output/guides/guide.xml')).toEqual(
+      content('tests/__data__/expected/epg_grab/gzip/guide.xml')
     )
 
-    const outputString = pako.ungzip(
-      fs.readFileSync('tests/__data__/output/guides/gzip.guide.xml.gz'),
-      { to: 'string' }
-    )
+    const outputString = pako.ungzip(fs.readFileSync('tests/__data__/output/guides/guide.xml.gz'), {
+      toText: true
+    })
     const expectedString = pako.ungzip(
-      fs.readFileSync('tests/__data__/expected/epg_grab/gzip.guide.xml.gz'),
-      { to: 'string' }
+      fs.readFileSync('tests/__data__/expected/epg_grab/gzip/guide.xml.gz'),
+      { toText: true }
     )
 
     const output = new Set(outputString.split('\r\n'))
     const expected = new Set(expectedString.split('\r\n'))
 
     expect(output).toEqual(expected)
+  })
+
+  it('can grab epg with GZIP environment variable', () => {
+    const cmd = `${ENV_VAR} GZIP=true npm run grab --- --channels=tests/__data__/input/epg_grab/sites/example2.com/example2.com.channels.xml --output="${path.resolve(
+      'tests/__data__/output/guides/guide.xml'
+    )}"`
+    const stdout = execSync(cmd, { encoding: 'utf8' })
+    if (process.env.DEBUG === 'true') console.log(cmd, stdout)
+
+    expect(content('tests/__data__/output/guides/guide.xml')).toEqual(
+      content('tests/__data__/expected/epg_grab/gzip/guide.xml')
+    )
+
+    const outputString = pako.ungzip(fs.readFileSync('tests/__data__/output/guides/guide.xml.gz'), {
+      toText: true
+    })
+    const expectedString = pako.ungzip(
+      fs.readFileSync('tests/__data__/expected/epg_grab/gzip/guide.xml.gz'),
+      { toText: true }
+    )
+
+    const output = new Set(outputString.split('\r\n'))
+    const expected = new Set(expectedString.split('\r\n'))
+
+    expect(output).toEqual(expected)
+  })
+
+  it('can grab epg with gzip path', () => {
+    const cmd = `${ENV_VAR} npm run grab --- --channels=tests/__data__/input/epg_grab/sites/example2.com/example2.com.channels.xml --output="${path.resolve(
+      'tests/__data__/output/guides/guide.xml'
+    )}" --gzip="${path.resolve('tests/__data__/output/guides/custom.xml.gz')}"`
+    const stdout = execSync(cmd, { encoding: 'utf8' })
+    if (process.env.DEBUG === 'true') console.log(cmd, stdout)
+
+    expect(content('tests/__data__/output/guides/guide.xml')).toEqual(
+      content('tests/__data__/expected/epg_grab/gzip/guide.xml')
+    )
+
+    const outputString = pako.ungzip(
+      fs.readFileSync('tests/__data__/output/guides/custom.xml.gz'),
+      {
+        toText: true
+      }
+    )
+    const expectedString = pako.ungzip(
+      fs.readFileSync('tests/__data__/expected/epg_grab/gzip/guide.xml.gz'),
+      { toText: true }
+    )
+
+    const output = new Set(outputString.split('\r\n'))
+    const expected = new Set(expectedString.split('\r\n'))
+
+    expect(output).toEqual(expected)
+  })
+
+  it('can grab epg with json option enabled', () => {
+    const cmd = `${ENV_VAR} npm run grab --- --channels=tests/__data__/input/epg_grab/sites/example2.com/example2.com.channels.xml --output="${path.resolve(
+      'tests/__data__/output/guides/guide.xml'
+    )}" --json`
+    const stdout = execSync(cmd, { encoding: 'utf8' })
+    if (process.env.DEBUG === 'true') console.log(cmd, stdout)
+
+    expect(content('tests/__data__/output/guides/guide.xml')).toEqual(
+      content('tests/__data__/expected/epg_grab/json/guide.xml')
+    )
+
+    expect(content('tests/__data__/output/guides/guide.json')).toEqual(
+      content('tests/__data__/expected/epg_grab/json/guide.json')
+    )
+  })
+
+  it('can grab epg with json path', () => {
+    const cmd = `${ENV_VAR} npm run grab --- --channels=tests/__data__/input/epg_grab/sites/example2.com/example2.com.channels.xml --output="${path.relative(
+      process.cwd(),
+      'tests/__data__/output/guides/guide.xml'
+    )}" --json="${path.relative(process.cwd(), 'tests/__data__/output/guides/custom.json')}"`
+    const stdout = execSync(cmd, { encoding: 'utf8' })
+    if (process.env.DEBUG === 'true') console.log(cmd, stdout)
+
+    expect(content('tests/__data__/output/guides/guide.xml')).toEqual(
+      content('tests/__data__/expected/epg_grab/json/guide.xml')
+    )
+
+    expect(content('tests/__data__/output/guides/custom.json')).toEqual(
+      content('tests/__data__/expected/epg_grab/json/guide.json')
+    )
   })
 })
 
