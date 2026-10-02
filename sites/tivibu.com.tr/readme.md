@@ -5,7 +5,7 @@ https://www.tivibu.com.tr/canli-tv
 ### Download the guide
 
 ```sh
-npm run grab --- --site=tivibu.com.tr
+npm run grab --- --sites=tivibu.com.tr
 ```
 
 ### Update channel list
