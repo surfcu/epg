@@ -1,3 +1,7 @@
+const tls = require('tls')
+const http = require('http')
+const https = require('https')
+const crypto = require('crypto')
 const axios = require('axios')
 const dayjs = require('dayjs')
 const utc = require('dayjs/plugin/utc')
@@ -9,7 +13,77 @@ dayjs.extend(timezone)
 dayjs.extend(customParseFormat)
 
 const TZ = 'Europe/Istanbul'
-const BASE = 'https://www.turksatkablo.com.tr/userUpload/EPG'
+const HOST = 'www.turksatkablo.com.tr'
+const BASE = `https://${HOST}/userUpload/EPG`
+
+// The server sends its certificate without the intermediate CA. Browsers download the
+// missing intermediate from the certificate's "CA Issuers" URL; Node.js doesn't and fails
+// with "unable to verify the first certificate". Do the same as a browser: fetch the
+// intermediate, accept it only if a system root CA signed it, and add it to this agent.
+const httpsAgent = new https.Agent({ keepAlive: true })
+let caPromise
+
+function download(url) {
+  return new Promise((resolve, reject) => {
+    const lib = url.startsWith('https:') ? https : http
+    const req = lib.get(url, { timeout: 15000 }, res => {
+      if (res.statusCode !== 200) {
+        res.resume()
+        return reject(new Error(`HTTP ${res.statusCode} for ${url}`))
+      }
+      const chunks = []
+      res.on('data', c => chunks.push(c))
+      res.on('end', () => resolve(Buffer.concat(chunks)))
+    })
+    req.on('timeout', () => req.destroy(new Error(`timeout fetching ${url}`)))
+    req.on('error', reject)
+  })
+}
+
+function peerCertificate() {
+  return new Promise((resolve, reject) => {
+    // only reads the certificate during the handshake; no request is sent on this socket
+    const socket = tls.connect({ host: HOST, port: 443, servername: HOST, rejectUnauthorized: false })
+    socket.setTimeout(15000, () => socket.destroy(new Error('TLS handshake timeout')))
+    socket.once('secureConnect', () => {
+      const result = { authorized: socket.authorized, cert: socket.getPeerCertificate() }
+      socket.end()
+      resolve(result)
+    })
+    socket.once('error', reject)
+  })
+}
+
+function signedBySystemRoot(cert) {
+  return tls.rootCertificates.some(pem => {
+    try {
+      const root = new crypto.X509Certificate(pem)
+      return cert.checkIssued(root) && cert.verify(root.publicKey)
+    } catch {
+      return false
+    }
+  })
+}
+
+function ensureCertificateChain() {
+  if (!caPromise) {
+    caPromise = (async () => {
+      const { authorized, cert } = await peerCertificate()
+      if (authorized) return // chain is complete again; nothing to do
+      const urls = cert?.infoAccess?.['CA Issuers - URI'] || []
+      for (const url of urls) {
+        const intermediate = new crypto.X509Certificate(await download(url))
+        if (!intermediate.ca || !signedBySystemRoot(intermediate)) continue
+        httpsAgent.options.ca = [...tls.rootCertificates, intermediate.toString()]
+        return
+      }
+      throw new Error('no usable intermediate certificate found')
+    })().catch(err => {
+      console.error(`turksatkablo.com.tr: could not complete the certificate chain: ${err.message}`)
+    })
+  }
+  return caPromise
+}
 
 // One file per day of the month: 1.json ... 31.json (no leading zero).
 // Only yesterday/today/tomorrow are kept current; the rest still hold last month.
@@ -42,11 +116,11 @@ const DETAIL_CONCURRENCY = 5
 
 async function fetchDetails({ date, channelId, programId }) {
   const d = dayjs.utc(date)
-  const url = `https://www.turksatkablo.com.tr/yayin-akisi-program-detay.aspx?d=${d.date()}&m=${
+  const url = `https://${HOST}/yayin-akisi-program-detay.aspx?d=${d.date()}&m=${
     d.month() + 1
   }&y=${d.year()}&kID=${channelId}&eID=${programId}`
   try {
-    const { data } = await axios.get(url, { timeout: 15000, responseType: 'text' })
+    const { data } = await axios.get(url, { timeout: 15000, responseType: 'text', httpsAgent })
     const cheerio = require('cheerio')
     const $ = cheerio.load(String(data))
     const box = $('.program-detail')
@@ -79,10 +153,12 @@ async function mapLimit(items, limit, fn) {
 module.exports = {
   site: 'turksatkablo.com.tr',
   days: 2,
-  url({ date }) {
+  async url({ date }) {
+    await ensureCertificateChain()
     return fileUrl(dayjs.utc(date).date())
   },
   request: {
+    httpsAgent,
     timeout: 60000,
     cache: {
       ttl: 60 * 60 * 1000 // 1 hour; one file serves every channel
@@ -128,7 +204,8 @@ module.exports = {
   },
   async channels() {
     const day = dayjs().tz(TZ).date()
-    const { data } = await axios.get(fileUrl(day), { responseType: 'text' })
+    await ensureCertificateChain()
+    const { data } = await axios.get(fileUrl(day), { responseType: 'text', httpsAgent })
     const parsed = parseJson(data)
     const list = parsed?.k || []
 
