@@ -68,6 +68,8 @@ it('can parse response', () => {
     season: 7,
     episode: 3,
     image:
+      'https://gbzottvsc17.tvplus.com.tr:33207/CPS/images/universal/film/program/202609/20260927/9/2204280626275eb88428_0_XL.jpg',
+    icon:
       'https://gbzottvsc17.tvplus.com.tr:33207/CPS/images/universal/film/program/202609/20260927/9/2204280626275eb88428_0_XL.jpg'
   })
   expect(results[0].description).toMatch(/^Başarılı cinayet-gizem/)

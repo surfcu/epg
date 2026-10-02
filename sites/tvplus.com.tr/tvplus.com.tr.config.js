@@ -110,11 +110,13 @@ module.exports = {
 
     return data.playbilllist
       .filter(item => item.name && item.gapFiller !== '1')
-      .map(item => ({
+      .map(item => ({ item, image: pickImage(item) }))
+      .map(({ item, image }) => ({
         title: item.name,
         description: item.introduce || null,
         category: item.genres ? item.genres.split(',').map(g => g.trim()).filter(Boolean) : [],
-        image: pickImage(item),
+        image,
+        icon: image, // <icon> for Tvheadend and older XMLTV readers
         season: toInt(item.seasonNum),
         episode: toInt(item.subNum),
         start: parseTime(item.starttime),

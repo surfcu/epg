@@ -112,6 +112,7 @@ module.exports = {
         description: item.description || null,
         category: item.genre || null,
         image: item.prevueImage || null,
+        icon: item.prevueImage || null, // <icon> for Tvheadend and older XMLTV readers
         rating: RATINGS[item.ratingId] ? { system: 'RTÜK', value: RATINGS[item.ratingId] } : null,
         start,
         stop

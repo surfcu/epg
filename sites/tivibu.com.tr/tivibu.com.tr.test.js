@@ -73,7 +73,8 @@ it('can parse response', () => {
     title: 'Gece Gelen',
     category: 'Film',
     rating: { system: 'RTÜK', value: '18+' },
-    image: 'https://itv224186.tmp.tivibu.com.tr:6430/images/prevueposter/20260312640884.jpg'
+    image: 'https://itv224186.tmp.tivibu.com.tr:6430/images/prevueposter/20260312640884.jpg',
+    icon: 'https://itv224186.tmp.tivibu.com.tr:6430/images/prevueposter/20260312640884.jpg'
   })
   expect(results[0].description).toMatch(/^Dünyanın bambaşka/)
   expect(results[2]).toMatchObject({
