@@ -17,7 +17,7 @@
   <channel site="tivibu.com.tr" site_id="2813" lang="tr" xmltv_id="Sinema1002.tr@SD">SİNEMA 1002</channel>
   <channel site="tivibu.com.tr" site_id="2905" lang="tr" xmltv_id="">FILMSCREEN INTERNATIONAL</channel>
   <channel site="tivibu.com.tr" site_id="2945" lang="tr" xmltv_id="">Cosmo EN</channel>
-  <channel site="tivibu.com.tr" site_id="1062" lang="tr" xmltv_id="BBCFirst.uk">BBC FIRST</channel>
+  <channel site="tivibu.com.tr" site_id="1062" lang="tr" xmltv_id="BBCFirst.uk@Turkiye">BBC FIRST</channel>
   <channel site="tivibu.com.tr" site_id="1441" lang="tr" xmltv_id="FX.tr@HD">FX</channel>
   <channel site="tivibu.com.tr" site_id="2389" lang="tr" xmltv_id="ViasatEpicDrama.uk@Turkish">EPIC DRAMA</channel>
   <channel site="tivibu.com.tr" site_id="1266" lang="tr" xmltv_id="TRT1.tr@SD">TRT 1</channel>
@@ -65,8 +65,8 @@
   <channel site="tivibu.com.tr" site_id="1241" lang="tr" xmltv_id="SemerkandTV.tr@SD">SEMERKAND TV</channel>
   <channel site="tivibu.com.tr" site_id="2075" lang="tr" xmltv_id="HalkTV.tr@SD">HALK TV</channel>
   <channel site="tivibu.com.tr" site_id="2267" lang="tr" xmltv_id="SozcuTV.tr@SD">SZC TV</channel>
-  <channel site="tivibu.com.tr" site_id="1131" lang="tr" xmltv_id="Eurosport1.fr">EUROSPORT 1</channel>
-  <channel site="tivibu.com.tr" site_id="1141" lang="tr" xmltv_id="Eurosport2.fr">EUROSPORT 2</channel>
+  <channel site="tivibu.com.tr" site_id="1131" lang="tr" xmltv_id="Eurosport1.fr@Turkiye">EUROSPORT 1</channel>
+  <channel site="tivibu.com.tr" site_id="1141" lang="tr" xmltv_id="Eurosport2.fr@Turkiye">EUROSPORT 2</channel>
   <channel site="tivibu.com.tr" site_id="1356" lang="tr" xmltv_id="">TİVİBU SPOR 1</channel>
   <channel site="tivibu.com.tr" site_id="1270" lang="tr" xmltv_id="TivibuSpor2.tr@SD">TİVİBU SPOR 2</channel>
   <channel site="tivibu.com.tr" site_id="1357" lang="tr" xmltv_id="TivibuSpor3.tr@SD">TİVİBU SPOR 3</channel>
@@ -87,22 +87,22 @@
   <channel site="tivibu.com.tr" site_id="1111" lang="tr" xmltv_id="DiscoveryChannel.tr@SD">DISCOVERY CHANNEL</channel>
   <channel site="tivibu.com.tr" site_id="1171" lang="tr" xmltv_id="">ID</channel>
   <channel site="tivibu.com.tr" site_id="1891" lang="tr" xmltv_id="ViasatHistory.tr@SD">VIASAT HISTORY</channel>
-  <channel site="tivibu.com.tr" site_id="1881" lang="tr" xmltv_id="LoveNature.ca">LOVE NATURE</channel>
-  <channel site="tivibu.com.tr" site_id="1061" lang="tr" xmltv_id="BBCEarth.uk">BBC EARTH</channel>
+  <channel site="tivibu.com.tr" site_id="1881" lang="tr" xmltv_id="LoveNature.ca@SD">LOVE NATURE</channel>
+  <channel site="tivibu.com.tr" site_id="1061" lang="tr" xmltv_id="BBCEarth.uk@Turkiye">BBC EARTH</channel>
   <channel site="tivibu.com.tr" site_id="1213" lang="tr" xmltv_id="TRTCocuk.tr@SD">TRT ÇOCUK</channel>
   <channel site="tivibu.com.tr" site_id="1187" lang="tr" xmltv_id="MinikaCocuk.tr@SD">MİNİKA ÇOCUK</channel>
   <channel site="tivibu.com.tr" site_id="1186" lang="tr" xmltv_id="MinikaGo.tr@SD">MİNİKA GO</channel>
   <channel site="tivibu.com.tr" site_id="2298" lang="tr" xmltv_id="TRTDiyanetCocuk.tr@SD">TRT DİYANET ÇOCUK</channel>
   <channel site="tivibu.com.tr" site_id="2833" lang="tr" xmltv_id="SpacetoonTurkey.tr@SD">SPACETOON</channel>
-  <channel site="tivibu.com.tr" site_id="1091" lang="tr" xmltv_id="Cartoonito.uk">CARTOONITO</channel>
+  <channel site="tivibu.com.tr" site_id="1091" lang="tr" xmltv_id="Cartoonito.uk@SD">CARTOONITO</channel>
   <channel site="tivibu.com.tr" site_id="1123" lang="tr" xmltv_id="DisneyJr.tr@SD">DISNEY JUNIOR</channel>
-  <channel site="tivibu.com.tr" site_id="2247" lang="tr" xmltv_id="MoonbugKids.uk">MOONBUG</channel>
+  <channel site="tivibu.com.tr" site_id="2247" lang="tr" xmltv_id="MoonbugKids.uk@SD">MOONBUG</channel>
   <channel site="tivibu.com.tr" site_id="1068" lang="tr" xmltv_id="CartoonNetwork.tr@SD">CARTOON NETWORK</channel>
-  <channel site="tivibu.com.tr" site_id="1019" lang="tr" xmltv_id="BabyTV.uk">BABYTV</channel>
+  <channel site="tivibu.com.tr" site_id="1019" lang="tr" xmltv_id="BabyTV.uk@Turkiye">BABYTV</channel>
   <channel site="tivibu.com.tr" site_id="2541" lang="tr" xmltv_id="Nickelodeon.tr@SD">NICKELODEON</channel>
   <channel site="tivibu.com.tr" site_id="1190" lang="tr" xmltv_id="Nicktoons.tr@SD">NICKTOONS</channel>
   <channel site="tivibu.com.tr" site_id="2701" lang="tr" xmltv_id="NickJr.tr@SD">NICK JR</channel>
-  <channel site="tivibu.com.tr" site_id="1093" lang="tr" xmltv_id="DaVinci.de">DA VINCI</channel>
+  <channel site="tivibu.com.tr" site_id="1093" lang="tr" xmltv_id="DaVinci.de@SD">DA VINCI</channel>
   <channel site="tivibu.com.tr" site_id="2925" lang="tr" xmltv_id="TRTGenc.tr@SD">TRT GENÇ</channel>
   <channel site="tivibu.com.tr" site_id="1308" lang="tr" xmltv_id="TRTTurk.tr@SD">TRT TÜRK</channel>
   <channel site="tivibu.com.tr" site_id="1267" lang="tr" xmltv_id="TRTAvaz.tr@SD">TRT AVAZ</channel>
@@ -119,22 +119,22 @@
   <channel site="tivibu.com.tr" site_id="1095" lang="tr" xmltv_id="DreamTurk.tr@SD">DREAM TÜRK TV</channel>
   <channel site="tivibu.com.tr" site_id="1231" lang="tr" xmltv_id="PowerTV.tr@SD">POWER TV</channel>
   <channel site="tivibu.com.tr" site_id="1225" lang="tr" xmltv_id="PowerTurkTV.tr@SD">POWER TÜRK</channel>
-  <channel site="tivibu.com.tr" site_id="1070" lang="tr" xmltv_id="CNNInternational.us">CNN INTERNATIONAL</channel>
-  <channel site="tivibu.com.tr" site_id="1013" lang="tr" xmltv_id="AlJazeera.qa">AL JAZEERA INTERNATIONAL</channel>
+  <channel site="tivibu.com.tr" site_id="1070" lang="tr" xmltv_id="CNNInternational.us@MENA">CNN INTERNATIONAL</channel>
+  <channel site="tivibu.com.tr" site_id="1013" lang="tr" xmltv_id="AlJazeera.qa@English">AL JAZEERA INTERNATIONAL</channel>
   <channel site="tivibu.com.tr" site_id="1309" lang="tr" xmltv_id="TRTWorld.tr@SD">TRT WORLD</channel>
-  <channel site="tivibu.com.tr" site_id="1101" lang="tr" xmltv_id="CNBCEurope.uk">CNBC</channel>
-  <channel site="tivibu.com.tr" site_id="1063" lang="tr" xmltv_id="BBCNews.uk">BBC NEWS</channel>
-  <channel site="tivibu.com.tr" site_id="1065" lang="tr" xmltv_id="BloombergTV.us">BLOOMBERG</channel>
+  <channel site="tivibu.com.tr" site_id="1101" lang="tr" xmltv_id="CNBCEurope.uk@SD">CNBC</channel>
+  <channel site="tivibu.com.tr" site_id="1063" lang="tr" xmltv_id="BBCNews.uk@Europe">BBC NEWS</channel>
+  <channel site="tivibu.com.tr" site_id="1065" lang="tr" xmltv_id="BloombergTV.us@Europe">BLOOMBERG</channel>
   <channel site="tivibu.com.tr" site_id="1030" lang="tr" xmltv_id="ANews.tr@SD">ANEWS</channel>
-  <channel site="tivibu.com.tr" site_id="1234" lang="tr" xmltv_id="TV5MondeEurope.fr">TV5 MONDE</channel>
-  <channel site="tivibu.com.tr" site_id="1189" lang="tr" xmltv_id="NHKWorldJapan.jp">NHK WORLD-JAPAN</channel>
-  <channel site="tivibu.com.tr" site_id="1094" lang="tr" xmltv_id="DW.de">DEUTSCHE WELLE</channel>
+  <channel site="tivibu.com.tr" site_id="1234" lang="tr" xmltv_id="TV5MondeEurope.fr@SD">TV5 MONDE</channel>
+  <channel site="tivibu.com.tr" site_id="1189" lang="tr" xmltv_id="NHKWorldJapan.jp@SD">NHK WORLD-JAPAN</channel>
+  <channel site="tivibu.com.tr" site_id="1094" lang="tr" xmltv_id="DW.de@English">DEUTSCHE WELLE</channel>
   <channel site="tivibu.com.tr" site_id="1306" lang="tr" xmltv_id="">TRT EL ARABIA</channel>
-  <channel site="tivibu.com.tr" site_id="1028" lang="tr" xmltv_id="AlJazeera.qa">AL JAZEERA ARABIC</channel>
+  <channel site="tivibu.com.tr" site_id="1028" lang="tr" xmltv_id="AlJazeera.qa@Arabic">AL JAZEERA ARABIC</channel>
   <channel site="tivibu.com.tr" site_id="1168" lang="tr" xmltv_id="AlQuranAlKareemTV.sa@SD">SAUDI QURAN</channel>
   <channel site="tivibu.com.tr" site_id="1921" lang="tr" xmltv_id="AlSunnahAlNabawiyahTV.sa@SD">AL SUNNAH</channel>
-  <channel site="tivibu.com.tr" site_id="1226" lang="tr" xmltv_id="RTArabic.ru">RT ARABIC</channel>
-  <channel site="tivibu.com.tr" site_id="1154" lang="tr" xmltv_id="France24.fr">FRANCE 24</channel>
+  <channel site="tivibu.com.tr" site_id="1226" lang="tr" xmltv_id="RTArabic.ru@SD">RT ARABIC</channel>
+  <channel site="tivibu.com.tr" site_id="1154" lang="tr" xmltv_id="France24.fr@French">FRANCE 24</channel>
   <channel site="tivibu.com.tr" site_id="1233" lang="tr" xmltv_id="TRTEBA.tr@SD">TRT EBA</channel>
   <channel site="tivibu.com.tr" site_id="1354" lang="tr" xmltv_id="">TÜRKÇE POP</channel>
   <channel site="tivibu.com.tr" site_id="1269" lang="tr" xmltv_id="">TÜRKÇE SLOW</channel>
@@ -158,4 +158,3 @@
   <channel site="tivibu.com.tr" site_id="1185" lang="tr" xmltv_id="">MUTLU</channel>
   <channel site="tivibu.com.tr" site_id="1173" lang="tr" xmltv_id="">ÇALIŞIRKEN</channel>
   <channel site="tivibu.com.tr" site_id="1236" lang="tr" xmltv_id="">TİVİBU ÇOCUK</channel>
-</channels>

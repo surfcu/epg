@@ -14,7 +14,7 @@
   <channel site="turksatkablo.com.tr" site_id="12" lang="tr" xmltv_id="SinemaKomedi.tr@SD">Sinema Komedi</channel>
   <channel site="turksatkablo.com.tr" site_id="13" lang="tr" xmltv_id="SinemaKomedi2.tr@SD">Sinema Komedi 2</channel>
   <channel site="turksatkablo.com.tr" site_id="22" lang="tr" xmltv_id="TRT1.tr@SD">TRT 1</channel>
-  <channel site="turksatkablo.com.tr" site_id="23" lang="tr" xmltv_id="ATV.am@SD">Atv</channel>
+  <channel site="turksatkablo.com.tr" site_id="23" lang="tr" xmltv_id="ATV.tr@SD">Atv</channel>
   <channel site="turksatkablo.com.tr" site_id="24" lang="tr" xmltv_id="ShowTV.tr@SD">Show</channel>
   <channel site="turksatkablo.com.tr" site_id="25" lang="tr" xmltv_id="KanalD.tr@SD">Kanal D</channel>
   <channel site="turksatkablo.com.tr" site_id="26" lang="tr" xmltv_id="StarTV.tr@SD">Star</channel>
@@ -112,8 +112,8 @@
   <channel site="turksatkablo.com.tr" site_id="222" lang="tr" xmltv_id="TRTSpor.tr@SD">TRT Spor</channel>
   <channel site="turksatkablo.com.tr" site_id="223" lang="tr" xmltv_id="beINSportsHaber.tr@SD">beIN SPORTS HABER</channel>
   <channel site="turksatkablo.com.tr" site_id="224" lang="tr" xmltv_id="ASpor.tr@SD">A Spor</channel>
-  <channel site="turksatkablo.com.tr" site_id="225" lang="tr" xmltv_id="Eurosport1.fr@France">Eurosport 1</channel>
-  <channel site="turksatkablo.com.tr" site_id="226" lang="tr" xmltv_id="Eurosport2.fr@France">Eurosport 2</channel>
+  <channel site="turksatkablo.com.tr" site_id="225" lang="tr" xmltv_id="Eurosport1.fr@Turkiye">Eurosport 1</channel>
+  <channel site="turksatkablo.com.tr" site_id="226" lang="tr" xmltv_id="Eurosport2.fr@Turkiye">Eurosport 2</channel>
   <channel site="turksatkablo.com.tr" site_id="227" lang="tr" xmltv_id="HTSporTV.tr@SD">HT Spor</channel>
   <channel site="turksatkablo.com.tr" site_id="228" lang="tr" xmltv_id="TraceSportStars.fr@HD">Trace Sport Stars</channel>
   <channel site="turksatkablo.com.tr" site_id="230" lang="tr" xmltv_id="">CosmoSports</channel>
@@ -135,7 +135,7 @@
   <channel site="turksatkablo.com.tr" site_id="447" lang="tr" xmltv_id="TRTDiyanetCocuk.tr@SD">TRT Diyanet Çocuk</channel>
   <channel site="turksatkablo.com.tr" site_id="448" lang="tr" xmltv_id="SpacetoonTurkey.tr@SD">SpaceTOON</channel>
   <channel site="turksatkablo.com.tr" site_id="454" lang="tr" xmltv_id="">Azoomee</channel>
-  <channel site="turksatkablo.com.tr" site_id="455" lang="tr" xmltv_id="BabyTV.uk@UK">BabyTV</channel>
+  <channel site="turksatkablo.com.tr" site_id="455" lang="tr" xmltv_id="BabyTV.uk@Turkiye">BabyTV</channel>
   <channel site="turksatkablo.com.tr" site_id="456" lang="tr" xmltv_id="DisneyJr.tr@SD">Disney Junior</channel>
   <channel site="turksatkablo.com.tr" site_id="457" lang="tr" xmltv_id="CartoonNetwork.tr@SD">Cartoon Network</channel>
   <channel site="turksatkablo.com.tr" site_id="458" lang="tr" xmltv_id="MoonbugKids.uk@SD">Moonbug Kids</channel>
@@ -156,4 +156,3 @@
   <channel site="turksatkablo.com.tr" site_id="890" lang="tr" xmltv_id="">Bursa, TVON6</channel>
   <channel site="turksatkablo.com.tr" site_id="891" lang="tr" xmltv_id="TV1.tr@SD">TV1</channel>
   <channel site="turksatkablo.com.tr" site_id="892" lang="tr" xmltv_id="">OlayTürk</channel>
-</channels>
