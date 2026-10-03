@@ -23,7 +23,7 @@
   <channel site="turksatkablo.com.tr" site_id="29" lang="tr" xmltv_id="TV8.tr@SD">TV 8</channel>
   <channel site="turksatkablo.com.tr" site_id="30" lang="tr" xmltv_id="BeyazTV.tr@SD">Beyaz TV</channel>
   <channel site="turksatkablo.com.tr" site_id="31" lang="tr" xmltv_id="A2TV.tr@SD">a2</channel>
-  <channel site="turksatkablo.com.tr" site_id="32" lang="tr" xmltv_id="Teve2.tr@SD">TV 2 HD</channel>
+  <channel site="turksatkablo.com.tr" site_id="32" lang="tr" xmltv_id="tv2.tr@SD">TV 2 HD</channel>
   <channel site="turksatkablo.com.tr" site_id="33" lang="tr" xmltv_id="360.tr@SD">360</channel>
   <channel site="turksatkablo.com.tr" site_id="34" lang="tr" xmltv_id="TLC.tr@SD">TLC</channel>
   <channel site="turksatkablo.com.tr" site_id="35" lang="tr" xmltv_id="DMAX.tr@SD">DMAX</channel>
@@ -35,7 +35,7 @@
   <channel site="turksatkablo.com.tr" site_id="41" lang="tr" xmltv_id="TV85.tr@SD">TV 8,5</channel>
   <channel site="turksatkablo.com.tr" site_id="42" lang="tr" xmltv_id="">CosmoEN</channel>
   <channel site="turksatkablo.com.tr" site_id="43" lang="tr" xmltv_id="KanalB.tr@SD">Kanal B</channel>
-  <channel site="turksatkablo.com.tr" site_id="44" lang="tr" xmltv_id="">Kibris Genç TV</channel>
+  <channel site="turksatkablo.com.tr" site_id="44" lang="tr" xmltv_id="KibrisGencTV.cy@SD">Kibris Genç TV</channel>
   <channel site="turksatkablo.com.tr" site_id="45" lang="tr" xmltv_id="VavTV.tr@SD">Vav TV</channel>
   <channel site="turksatkablo.com.tr" site_id="46" lang="tr" xmltv_id="TYTTurk.tr@SD">TYT Türk</channel>
   <channel site="turksatkablo.com.tr" site_id="47" lang="tr" xmltv_id="TMB.tr@SD">TMB</channel>
@@ -45,7 +45,7 @@
   <channel site="turksatkablo.com.tr" site_id="51" lang="tr" xmltv_id="TarihTV.tr@SD">Tarih Tv</channel>
   <channel site="turksatkablo.com.tr" site_id="52" lang="tr" xmltv_id="Mezzo.fr@SD">Mezzo</channel>
   <channel site="turksatkablo.com.tr" site_id="53" lang="tr" xmltv_id="ClassicalHarmony.uk@SD">Classical Harmony</channel>
-  <channel site="turksatkablo.com.tr" site_id="54" lang="tr" xmltv_id="">TRT Genç</channel>
+  <channel site="turksatkablo.com.tr" site_id="54" lang="tr" xmltv_id="TRTGenc.tr@SD">TRT Genç</channel>
   <channel site="turksatkablo.com.tr" site_id="55" lang="tr" xmltv_id="TRTHaber.tr@SD">TRT Haber</channel>
   <channel site="turksatkablo.com.tr" site_id="56" lang="tr" xmltv_id="AHaber.tr@SD">A Haber</channel>
   <channel site="turksatkablo.com.tr" site_id="57" lang="tr" xmltv_id="NTV.tr@SD">NTV</channel>
@@ -63,28 +63,28 @@
   <channel site="turksatkablo.com.tr" site_id="70" lang="tr" xmltv_id="TRTKurdi.tr@SD">TRT Kurdî</channel>
   <channel site="turksatkablo.com.tr" site_id="71" lang="tr" xmltv_id="HaberGlobal.tr@SD">Haber Global</channel>
   <channel site="turksatkablo.com.tr" site_id="72" lang="tr" xmltv_id="">Ekol TV</channel>
-  <channel site="turksatkablo.com.tr" site_id="73" lang="tr" xmltv_id="">KRT TV</channel>
+  <channel site="turksatkablo.com.tr" site_id="73" lang="tr" xmltv_id="KRT.tr@SD">KRT TV</channel>
   <channel site="turksatkablo.com.tr" site_id="74" lang="tr" xmltv_id="HalkTV.tr@SD">Halk TV</channel>
-  <channel site="turksatkablo.com.tr" site_id="75" lang="tr" xmltv_id="">TH Türk Haber</channel>
+  <channel site="turksatkablo.com.tr" site_id="75" lang="tr" xmltv_id="TurkHaberTV.tr@SD">TH Türk Haber</channel>
   <channel site="turksatkablo.com.tr" site_id="76" lang="tr" xmltv_id="SozcuTV.tr@SD">SZC</channel>
   <channel site="turksatkablo.com.tr" site_id="77" lang="tr" xmltv_id="APara.tr@SD">a Para</channel>
   <channel site="turksatkablo.com.tr" site_id="78" lang="tr" xmltv_id="Ekoturk.tr@SD">Ekotürk</channel>
-  <channel site="turksatkablo.com.tr" site_id="79" lang="tr" xmltv_id="">TV 42</channel>
+  <channel site="turksatkablo.com.tr" site_id="79" lang="tr" xmltv_id="TV42.tr@SD">TV 42</channel>
   <channel site="turksatkablo.com.tr" site_id="80" lang="tr" xmltv_id="TV5.tr@SD">TV 5</channel>
   <channel site="turksatkablo.com.tr" site_id="81" lang="tr" xmltv_id="LiderHaber.tr@SD">Lider Haber</channel>
   <channel site="turksatkablo.com.tr" site_id="82" lang="tr" xmltv_id="Tele1.tr@SD">TELE 1</channel>
   <channel site="turksatkablo.com.tr" site_id="83" lang="tr" xmltv_id="ASTV.tr@SD">AS</channel>
-  <channel site="turksatkablo.com.tr" site_id="85" lang="tr" xmltv_id="">Flash Haber</channel>
+  <channel site="turksatkablo.com.tr" site_id="85" lang="tr" xmltv_id="FlashHaberTV.tr@SD">Flash Haber</channel>
   <channel site="turksatkablo.com.tr" site_id="88" lang="tr" xmltv_id="TRTWorld.tr@SD">TRT World</channel>
   <channel site="turksatkablo.com.tr" site_id="89" lang="tr" xmltv_id="ANews.tr@SD">A News</channel>
   <channel site="turksatkablo.com.tr" site_id="90" lang="tr" xmltv_id="CNNInternational.us@MENA">CNN International</channel>
-  <channel site="turksatkablo.com.tr" site_id="92" lang="tr" xmltv_id="">Bloomberg</channel>
+  <channel site="turksatkablo.com.tr" site_id="92" lang="tr" xmltv_id="BloombergTV.us@Europe">Bloomberg</channel>
   <channel site="turksatkablo.com.tr" site_id="95" lang="tr" xmltv_id="AlJazeera.qa@Arabic">Al Jazeera (Arapça)</channel>
   <channel site="turksatkablo.com.tr" site_id="96" lang="tr" xmltv_id="AlJazeera.qa@English">Al Jazeera (İngilizce)</channel>
   <channel site="turksatkablo.com.tr" site_id="99" lang="tr" xmltv_id="TRTArabi.tr@SD">TRT Arabi</channel>
   <channel site="turksatkablo.com.tr" site_id="102" lang="tr" xmltv_id="DW.de@English">Dw Tv (İngilizce)</channel>
   <channel site="turksatkablo.com.tr" site_id="105" lang="tr" xmltv_id="France24.fr@English">France 24 (İngilizce)</channel>
-  <channel site="turksatkablo.com.tr" site_id="106" lang="tr" xmltv_id="">France 24 (Fransızca)</channel>
+  <channel site="turksatkablo.com.tr" site_id="106" lang="tr" xmltv_id="France24.fr@French">France 24 (Fransızca)</channel>
   <channel site="turksatkablo.com.tr" site_id="108" lang="tr" xmltv_id="CGTN.cn@SD">CGTN</channel>
   <channel site="turksatkablo.com.tr" site_id="109" lang="tr" xmltv_id="Russia24.ru@SD">Russia 24</channel>
   <channel site="turksatkablo.com.tr" site_id="111" lang="tr" xmltv_id="TRTBelgesel.tr@SD">TRT Belgesel</channel>
@@ -98,16 +98,16 @@
   <channel site="turksatkablo.com.tr" site_id="130" lang="tr" xmltv_id="ViasatExplore.tr@SD">Viasat Explore</channel>
   <channel site="turksatkablo.com.tr" site_id="133" lang="tr" xmltv_id="CGTNDocumentary.cn@SD">CGTN Documentary</channel>
   <channel site="turksatkablo.com.tr" site_id="140" lang="tr" xmltv_id="AzTV.az@SD">Az TV</channel>
-  <channel site="turksatkablo.com.tr" site_id="141" lang="tr" xmltv_id="">Türkmeneli TV</channel>
+  <channel site="turksatkablo.com.tr" site_id="141" lang="tr" xmltv_id="TurkmeneliTV.iq@SD">Türkmeneli TV</channel>
   <channel site="turksatkablo.com.tr" site_id="143" lang="tr" xmltv_id="TV5MondeEurope.fr@SD">Tv 5 Monde Europe</channel>
-  <channel site="turksatkablo.com.tr" site_id="144" lang="tr" xmltv_id="">Cctv 4</channel>
+  <channel site="turksatkablo.com.tr" site_id="144" lang="tr" xmltv_id="CCTV4Europe.cn@SD">Cctv 4</channel>
   <channel site="turksatkablo.com.tr" site_id="145" lang="tr" xmltv_id="">Saudi TV</channel>
-  <channel site="turksatkablo.com.tr" site_id="146" lang="tr" xmltv_id="">Bir TV</channel>
+  <channel site="turksatkablo.com.tr" site_id="146" lang="tr" xmltv_id="BirTV.tr@SD">Bir TV</channel>
   <channel site="turksatkablo.com.tr" site_id="147" lang="tr" xmltv_id="">Hayat 2</channel>
-  <channel site="turksatkablo.com.tr" site_id="148" lang="tr" xmltv_id="">Planeta RTR</channel>
+  <channel site="turksatkablo.com.tr" site_id="148" lang="tr" xmltv_id="RTRPlaneta.ru@Europe">Planeta RTR</channel>
   <channel site="turksatkablo.com.tr" site_id="149" lang="tr" xmltv_id="KBSWorld.kr@SD">Kbs World</channel>
-  <channel site="turksatkablo.com.tr" site_id="150" lang="tr" xmltv_id="">Nhk World</channel>
-  <channel site="turksatkablo.com.tr" site_id="151" lang="tr" xmltv_id="">Arirang</channel>
+  <channel site="turksatkablo.com.tr" site_id="150" lang="tr" xmltv_id="NHKWorldJapan.jp@SD">Nhk World</channel>
+  <channel site="turksatkablo.com.tr" site_id="151" lang="tr" xmltv_id="ArirangTV.kr@SD">Arirang</channel>
   <channel site="turksatkablo.com.tr" site_id="152" lang="tr" xmltv_id="FREEDOM.ua@SD">Freedom</channel>
   <channel site="turksatkablo.com.tr" site_id="222" lang="tr" xmltv_id="TRTSpor.tr@SD">TRT Spor</channel>
   <channel site="turksatkablo.com.tr" site_id="223" lang="tr" xmltv_id="beINSportsHaber.tr@SD">beIN SPORTS HABER</channel>
@@ -125,7 +125,7 @@
   <channel site="turksatkablo.com.tr" site_id="245" lang="tr" xmltv_id="SportsTV.tr@SD">Sports Tv</channel>
   <channel site="turksatkablo.com.tr" site_id="246" lang="tr" xmltv_id="FBTV.tr@SD">FB TV</channel>
   <channel site="turksatkablo.com.tr" site_id="333" lang="tr" xmltv_id="FX.tr@HD">FX</channel>
-  <channel site="turksatkablo.com.tr" site_id="334" lang="tr" xmltv_id="EpicDrama.uk@Turkiye">Epic Drama</channel>
+  <channel site="turksatkablo.com.tr" site_id="334" lang="tr" xmltv_id="ViasatEpicDrama.uk@Turkish">Epic Drama</channel>
   <channel site="turksatkablo.com.tr" site_id="336" lang="tr" xmltv_id="">FILMSCREEN</channel>
   <channel site="turksatkablo.com.tr" site_id="355" lang="tr" xmltv_id="">Kitchen TV</channel>
   <channel site="turksatkablo.com.tr" site_id="356" lang="tr" xmltv_id="MyZenTV.fr@SD">MyZEN TV</channel>
@@ -147,13 +147,13 @@
   <channel site="turksatkablo.com.tr" site_id="464" lang="tr" xmltv_id="">Tinyteen</channel>
   <channel site="turksatkablo.com.tr" site_id="466" lang="tr" xmltv_id="TRTEBA.tr@SD">TRT Eba</channel>
   <channel site="turksatkablo.com.tr" site_id="555" lang="tr" xmltv_id="DiyanetTV.tr@SD">Diyanet TV</channel>
-  <channel site="turksatkablo.com.tr" site_id="556" lang="tr" xmltv_id="">Al Quran Al Kareem</channel>
-  <channel site="turksatkablo.com.tr" site_id="557" lang="tr" xmltv_id="">Al Sunnah Al Nabawiya</channel>
-  <channel site="turksatkablo.com.tr" site_id="558" lang="tr" xmltv_id="">Lâlegül</channel>
+  <channel site="turksatkablo.com.tr" site_id="556" lang="tr" xmltv_id="AlQuranAlKareemTV.sa@SD">Al Quran Al Kareem</channel>
+  <channel site="turksatkablo.com.tr" site_id="557" lang="tr" xmltv_id="AlSunnahAlNabawiyahTV.sa@SD">Al Sunnah Al Nabawiya</channel>
+  <channel site="turksatkablo.com.tr" site_id="558" lang="tr" xmltv_id="LalegulTV.tr@SD">Lâlegül</channel>
   <channel site="turksatkablo.com.tr" site_id="666" lang="tr" xmltv_id="TRTMuzik.tr@SD">TRT Müzik</channel>
   <channel site="turksatkablo.com.tr" site_id="667" lang="tr" xmltv_id="DreamTurk.tr@SD">Dream Türk</channel>
   <channel site="turksatkablo.com.tr" site_id="674" lang="tr" xmltv_id="TraceUrban.fr@SD">Trace Urban</channel>
   <channel site="turksatkablo.com.tr" site_id="890" lang="tr" xmltv_id="">Bursa, TVON6</channel>
-  <channel site="turksatkablo.com.tr" site_id="891" lang="tr" xmltv_id="">TV1</channel>
+  <channel site="turksatkablo.com.tr" site_id="891" lang="tr" xmltv_id="TV1.tr@SD">TV1</channel>
   <channel site="turksatkablo.com.tr" site_id="892" lang="tr" xmltv_id="">OlayTürk</channel>
 </channels>
