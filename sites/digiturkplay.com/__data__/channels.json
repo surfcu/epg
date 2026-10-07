@@ -1,0 +1,194 @@
+{
+  "hasAuth": false,
+  "disasterMode": false,
+  "data": {
+    "items": [
+      {
+        "channel": {
+          "id": 407,
+          "channelContentId": 30346,
+          "channelNo": 21,
+          "cmsChannelId": "21",
+          "slug": "beIN-gurme",
+          "name": "beIN GURME HD",
+          "genre": "Yaşam Eğlence",
+          "logo": "http://mediacms01.digiturkplay.com/channel_logo/w_Gurme_64x64_2022.png",
+          "sortOrder": 1
+        },
+        "epgList": [
+          {
+            "epgId": "11252593052",
+            "title": "Gece Lezzetleri S1 B5",
+            "subtitle": "Gece Lezzetleri'nin bu bölümünde Adana'dayız.",
+            "genre": "Yaşam",
+            "genreList": [
+              "Yaşam"
+            ],
+            "isLive": false,
+            "videoTag": "Recap",
+            "channelId": 407,
+            "channelContentId": 3165,
+            "eventId": 1,
+            "startTime": "2026-10-09T17:45:00Z",
+            "endTime": "2026-10-09T18:12:00Z",
+            "poster": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "homeTeamName": "Home Team",
+            "homeTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "awayTeamName": "Away Team",
+            "awayTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "showLogo": false,
+            "episodeNo": 5,
+            "seasonNo": 1,
+            "seasonName": "Sezon 1",
+            "seriesName": "Gece Lezzetleri"
+          }
+        ]
+      },
+      {
+        "channel": {
+          "id": 19,
+          "channelContentId": 3165,
+          "channelNo": 23,
+          "cmsChannelId": "23",
+          "slug": "trt-1",
+          "name": "TRT 1",
+          "genre": "Ulusal",
+          "logo": "http://mediacms01.digiturkplay.com/channel_logo/LogoTRT 1-Light.png",
+          "sortOrder": 4
+        },
+        "epgList": [
+          {
+            "epgId": "T861294R1477",
+            "title": "Mehmed: Fetihler Sultanı",
+            "subtitle": "İstanbul'un fethiyle müjdelenen Fatih Sultan Mehmed'in yaşam öyküsü konu alınıyor.",
+            "genre": "Dram",
+            "genreList": [
+              "Dram"
+            ],
+            "isLive": false,
+            "videoTag": "Recap",
+            "channelId": 19,
+            "channelContentId": 3165,
+            "eventId": 1,
+            "startTime": "2026-10-08T19:40:00Z",
+            "endTime": "2026-10-08T22:40:00Z",
+            "poster": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "homeTeamName": "Home Team",
+            "homeTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "awayTeamName": "Away Team",
+            "awayTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "showLogo": false
+          },
+          {
+            "epgId": "T941483R1488",
+            "title": "Taşacak Bu Deniz",
+            "subtitle": "Dağ ile denizin, hırçın fırtınalarla insanın, bir aşk hikâyesi içindeki mücadelesi!",
+            "genre": "Dram",
+            "genreList": [
+              "Dram"
+            ],
+            "isLive": false,
+            "videoTag": "Recap",
+            "channelId": 19,
+            "channelContentId": 3165,
+            "eventId": 1,
+            "startTime": "2026-10-08T22:40:00Z",
+            "endTime": "2026-10-09T01:20:00Z",
+            "poster": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "homeTeamName": "Home Team",
+            "homeTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "awayTeamName": "Away Team",
+            "awayTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "showLogo": false
+          },
+          {
+            "epgId": "T861297R1498",
+            "title": "Seksenler",
+            "subtitle": "Türkiye'de 1980'lerin başından günümüze yaşanan değişimin hikâyesi..",
+            "genre": "Komedi",
+            "genreList": [
+              "Komedi"
+            ],
+            "isLive": false,
+            "videoTag": "Recap",
+            "channelId": 19,
+            "channelContentId": 3165,
+            "eventId": 1,
+            "startTime": "2026-10-09T01:20:00Z",
+            "endTime": "2026-10-09T02:45:00Z",
+            "poster": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "homeTeamName": "Home Team",
+            "homeTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "awayTeamName": "Away Team",
+            "awayTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "showLogo": false
+          },
+          {
+            "epgId": "T151428R1554",
+            "title": "İddiaların Aksine",
+            "subtitle": "İddiaların Aksine",
+            "genre": "F2",
+            "genreList": [
+              "F2"
+            ],
+            "isLive": false,
+            "videoTag": "Recap",
+            "channelId": 19,
+            "channelContentId": 3165,
+            "eventId": 1,
+            "startTime": "2026-10-09T16:55:00Z",
+            "endTime": "2026-10-09T17:00:00Z",
+            "poster": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "homeTeamName": "Home Team",
+            "homeTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "awayTeamName": "Away Team",
+            "awayTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "showLogo": false
+          },
+          {
+            "epgId": "T861374R1554",
+            "title": "Taşacak Bu Deniz",
+            "subtitle": "Dağ ile denizin, hırçın fırtınalarla insanın, bir aşk hikâyesi içindeki mücadelesi!",
+            "genre": "Dram",
+            "genreList": [
+              "Dram"
+            ],
+            "isLive": false,
+            "videoTag": "Recap",
+            "channelId": 19,
+            "channelContentId": 3165,
+            "eventId": 1,
+            "startTime": "2026-10-09T17:00:00Z",
+            "endTime": "2026-10-09T21:15:00Z",
+            "poster": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "homeTeamName": "Home Team",
+            "homeTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "awayTeamName": "Away Team",
+            "awayTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "showLogo": false
+          }
+        ]
+      },
+      {
+        "channel": {
+          "id": 295,
+          "channelNo": 402,
+          "slug": "super-fm",
+          "name": "SUPER FM",
+          "genre": "Radyo"
+        },
+        "epgList": []
+      },
+      {
+        "channel": {
+          "id": 538,
+          "channelNo": 538,
+          "slug": "test-f",
+          "name": "Test- 4",
+          "genre": "Ulusal"
+        },
+        "epgList": []
+      }
+    ]
+  }
+}

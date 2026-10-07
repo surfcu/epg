@@ -45,6 +45,7 @@
     <tr><td><a href="sites/derana.lk">derana.lk</a></td><td align="right">1</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/digea.gr">digea.gr</a></td><td align="right">88</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/digiturk.com.tr">digiturk.com.tr</a></td><td align="right">112</td><td align="center">🟢</td><td></td></tr>
+    <tr><td><a href="sites/digiturkplay.com">digiturkplay.com</a></td><td align="right">74</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/directv.com">directv.com</a></td><td align="right">1156</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/directv.com.ar">directv.com.ar</a></td><td align="right">371</td><td align="center">🟢</td><td></td></tr>
     <tr><td><a href="sites/directv.com.uy">directv.com.uy</a></td><td align="right">374</td><td align="center">🟢</td><td></td></tr>

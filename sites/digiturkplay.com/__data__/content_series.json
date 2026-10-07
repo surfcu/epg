@@ -1,0 +1,49 @@
+{
+  "hasAuth": false,
+  "disasterMode": false,
+  "data": {
+    "items": [
+      {
+        "channel": {
+          "id": 407,
+          "channelContentId": 30346,
+          "channelNo": 21,
+          "cmsChannelId": "21",
+          "slug": "beIN-gurme",
+          "name": "beIN GURME HD",
+          "genre": "Yaşam Eğlence",
+          "logo": "http://mediacms01.digiturkplay.com/channel_logo/w_Gurme_64x64_2022.png",
+          "sortOrder": 1
+        },
+        "epgList": [
+          {
+            "epgId": "11252593052",
+            "title": "Gece Lezzetleri S1 B5",
+            "subtitle": "Gece Lezzetleri'nin bu bölümünde Adana'dayız.",
+            "genre": "Yaşam",
+            "genreList": [
+              "Yaşam"
+            ],
+            "isLive": false,
+            "videoTag": "Recap",
+            "channelId": 407,
+            "channelContentId": 3165,
+            "eventId": 1,
+            "startTime": "2026-10-09T17:45:00Z",
+            "endTime": "2026-10-09T18:12:00Z",
+            "poster": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "homeTeamName": "Home Team",
+            "homeTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "awayTeamName": "Away Team",
+            "awayTeamLogo": "http://contentlibrary.digiturk.com.tr/Generic/NoImageProgram.jpg",
+            "showLogo": false,
+            "episodeNo": 5,
+            "seasonNo": 1,
+            "seasonName": "Sezon 1",
+            "seriesName": "Gece Lezzetleri"
+          }
+        ]
+      }
+    ]
+  }
+}
